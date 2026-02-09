@@ -1,0 +1,15 @@
+{
+  "name": "Meu App de Orcamento",
+  "short_name": "Orçamentos",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#1a73e8",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2454/2454282.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

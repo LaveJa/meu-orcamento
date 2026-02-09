@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <title>Meu Orçamento</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h2 { color: #1a73e8; margin-top: 0; }
+        label { display: block; margin-top: 15px; color: #555; font-size: 0.9em; }
+        input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        .result-area { background: #e8f0fe; padding: 20px; border-radius: 12px; margin-top: 25px; text-align: center; }
+        .result-area span { display: block; font-size: 2em; font-weight: bold; color: #1a73e8; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Calculadora</h2>
+    
+    <label>Valor de Custo (R$)</label>
+    <input type="number" id="custo" placeholder="0,00" oninput="calcular()">
+    
+    <label>Margem de Lucro (%)</label>
+    <input type="number" id="margem" placeholder="Ex: 30" oninput="calcular()">
+
+    <div class="result-area">
+        <small>Preço de Venda</small>
+        <span id="total">R$ 0,00</span>
+    </div>
+</div>
+
+<script>
+    function calcular() {
+        const custo = parseFloat(document.getElementById('custo').value) || 0;
+        const margem = parseFloat(document.getElementById('margem').value) || 0;
+        
+        // Exemplo de fórmula: Custo + Porcentagem
+        const resultado = custo + (custo * (margem / 100));
+        
+        document.getElementById('total').innerText = resultado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // Registra o Service Worker para funcionar offline
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+</script>
+</body>
+</html>
